@@ -1,5 +1,9 @@
 ---
 title: "R data visualisation"
 ---
+```{r}
+library(tidyverse)
+library(datamicroarray)
+```
 
 updating...
