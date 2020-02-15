@@ -1,7 +1,7 @@
-name: "laurasansc"                                # CHANGE HERE 
+name: "laurasansc" 
 output_dir: "."
 navbar:
-  title: "laurasansc"                             # CHANGE HERE 
+  title: "laurasansc"
   left:
     - text: "About me"
       href: index.html
