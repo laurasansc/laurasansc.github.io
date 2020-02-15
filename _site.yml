@@ -2,7 +2,6 @@ name: "laurasansc"                                # CHANGE HERE
 output_dir: "."
 navbar:
   title: "laurasansc"                             # CHANGE HERE 
-  type: inverse
   left:
     - text: "About me"
       href: index.html

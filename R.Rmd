@@ -1,8 +1,8 @@
 ---
-title: "CV"
+title: "R data visualisation"
 ---
 
 
 ## Header
 
-Say more about your CV here.
+Say more about your CV here
