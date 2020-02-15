@@ -1,6 +1,5 @@
 ---
-title: "About Me"
+title: "Welcome to my website!"
 ---
 
-updating...
-hola laura
+You're up and running!
