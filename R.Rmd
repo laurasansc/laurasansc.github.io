@@ -3,3 +3,23 @@ title: "R data visualisation"
 ---
 
 updating...
+
+## GGPLOT ##
+
+```{r include=FALSE}
+library(tidyverse)
+library(datamicroarray)
+
+data('gravier', package = 'datamicroarray')
+set.seed(676571)
+cancer_data=mutate(as_tibble(pluck(gravier,"x")),y=pluck(gravier,"y"),pt_id=1:length(pluck(gravier, "y")),age=round(rnorm(length(pluck(gravier,"y")),mean=55,sd=10),1))
+cancer_data=rename(cancer_data,event_label=y)
+cancer_data$age_group=cut(cancer_data$age,breaks=seq(10,100,by=10))
+```
+
+Plot gene expression data (repo: bla bla bla)
+
+```{r}
+ggplot(data=cancer_data, aes(x=age, y=g7F07)) + geom_point(aes(color=event_label)) + theme_classic()
+```
+
