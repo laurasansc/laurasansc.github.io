@@ -5,11 +5,11 @@ title: "R data visualisation"
 updating...
 
 ## GGPLOT ##
-
-```{r include=FALSE}
+### lecture 2 ###
+```{r call libraries, include=FALSE}
 library(tidyverse)
 library(datamicroarray)
-
+library(data.table)
 data('gravier', package = 'datamicroarray')
 set.seed(676571)
 cancer_data=mutate(as_tibble(pluck(gravier,"x")),y=pluck(gravier,"y"),pt_id=1:length(pluck(gravier, "y")),age=round(rnorm(length(pluck(gravier,"y")),mean=55,sd=10),1))
@@ -18,8 +18,113 @@ cancer_data$age_group=cut(cancer_data$age,breaks=seq(10,100,by=10))
 ```
 
 Plot gene expression data (repo: bla bla bla)
+you can add:
+tags, title, labels, subtitle, caption
 
 ```{r}
-ggplot(data=cancer_data, aes(x=age, y=g7F07)) + geom_point(aes(color=event_label)) + theme_classic()
+#T1
+ggplot(data=cancer_data, aes(x=age, y=g7F07)) + geom_point(aes(color=event_label)) + labs(x="Age", y="Expression (log2)", title="Gene expression of g7F07", subtitle = "On cancer patients", tag="A", color = "Event label") + theme_classic() +  theme(panel.border = element_rect(colour = "black", fill=NA, size=1), axis.line = element_line(colour = "black", size=0), axis.text.x = element_text(face="bold", color="#000000"),
+          axis.text.y = element_text(face="bold", color="#000000"))
+
+# T2
+ggplot(data=cancer_data, aes(x=age, y=g7F07)) + geom_line() + theme_classic()
+
+#T3
+ggplot(data=cancer_data, aes(x=age_group, y=g7F07)) + geom_boxplot(aes(color=event_label)) + theme_classic()
+
+#T4
+ggplot(data=cancer_data, aes(x=g7F07)) + geom_histogram() + theme_classic()
+
+#T5
+ggplot(data=cancer_data, aes(x=g7F07)) + geom_density(aes(color=event_label)) + theme_classic()
+
+#T6
+ggplot(data=cancer_data, aes(x=age_group, y=g7F07)) + geom_boxplot(aes(color=event_label)) + theme_classic()
+
+#T7
+ggplot(data=cancer_data, aes(x=g7F07)) + geom_density(aes(color=event_label)) + theme_classic()
+
+#T8
+ggplot(data=cancer_data, aes(x=age_group, y=g7F07)) + geom_violin(aes(color=event_label, fill=event_label), alpha=0.6) + geom_boxplot(aes(fill=event_label),color= "black", width=0.2,position = position_dodge(0.9)) + theme_classic()
+
+#T9
+ggplot(data=cancer_data, aes(x=age, y=g7F07)) + geom_point(color="blue") + geom_smooth() + theme_classic()
+#labels ???
+#T10
+ggplot(data=cancer_data, aes(x=g2E09, y=g7F07)) + geom_point(color="blue") + geom_smooth() + facet_wrap(.~ age_group) + theme_classic()
+
+#T11
+ggplot(data=cancer_data, aes(x=event_label,y=g1CNS507, color=event_label)) + geom_boxplot() + coord_flip() + theme_classic()
+
+#T12
+ggplot(data=cancer_data, aes(x=age, y= g1int239)) + geom_point(aes(color=event_label)) + geom_smooth(method="lm", se=FALSE, aes(color=event_label))+ theme_classic()
+```
+```{r}
+# filters your data depending on the rows
+# arrange is sorting data in columns
+# select selects the column
+# mutate, add new variable to data set, predict
+# summarize,  summary metrics of a particular column, better used when the data is grouped. It does not change the data
+# group_by, group by the columns
+# %>% it is piping. 
+
+diabetes_data <- read_csv(file = "/Users/laurasansc/Desktop/BioinformaticsSystemsBiology/RforBioDataScience/data/diabetes.csv")
+
+diabetes_data <- diabetes_data %>% mutate(height_cm=round((2.54*height),1))
+diabetes_data <- diabetes_data %>% mutate(weight_kg=round((weight/2.205),1))
+diabetes_data <- diabetes_data %>% mutate(waist_cm=round((2.54*waist),1))
+diabetes_data <- diabetes_data %>% mutate(hip_cm=round((2.54*hip),1))
+
+# count how many people weight less than 100kg
+diabetes_data %>% filter(weight_kg < 100) 
+diabetes_data %>% filter(weight_kg > 100) 
+diabetes_data %>% filter(weight_kg >100, height_cm < 160)
+diabetes_data %>% filter(weight_kg >100, height_cm < 160)
+diabetes_data %>% filter(gender == "female", height_cm > 180)
+diabetes_data %>% filter(gender == "male", height_cm > 180)
+diabetes_data %>% filter(location == "Louisa",age > 30, gender == 'female')
+diabetes_data %>% filter(location == "Buckingham",age < 30, gender == 'male',height_cm >190 )
+
+subset_diabetes1 <- diabetes_data %>% filter(location == "Louisa", age > 40)
+
+ggplot(subset_diabetes1, aes(x=weight_kg, y=height_cm)) + geom_point(aes(color=gender))+scale_color_manual(values=c("#999999", "#E69F00")) + labs(x="Weight (kg)", y="Height (cm)", tag="A", color = "Gender") + theme_classic() +  theme(panel.border = element_rect(colour = "black", fill=NA, size=1), axis.line = element_line(colour = "black", size=0), axis.text.x = element_text(face="bold", color="#000000"),
+          axis.text.y = element_text(face="bold", color="#000000"))
+
+
+subset_diabetes2 <- diabetes_data %>% filter( age > 50)
+
+ggplot(subset_diabetes2 , aes(x=location, y=height_cm)) + geom_boxplot(aes(color=gender)) +scale_color_manual(values=c("#999999", "#E69F00")) + labs(x="Location", y="Height (cm)", tag="A", color = "Gender") + theme_classic() +  theme(panel.border = element_rect(colour = "black", fill=NA, size=1), axis.line = element_line(colour = "black", size=0), axis.text.x = element_text(face="bold", color="#000000"),
+          axis.text.y = element_text(face="bold", color="#000000"))
+
+diabetes_data %>% summarise(age_min = min(age))
+diabetes_data %>% summarise(age_max = max(age))
+
+diabetes_data %>% filter(age == 20)  %>% summarise(max_height = max(height_cm)) 
+diabetes_data %>% filter(age == 20)  %>% summarise(min_height = min(height_cm)) 
+
+diabetes_data %>% select(starts_with("b"))
+diabetes_data %>% select(contains("eight"))
+
+diabetes_data <- diabetes_data %>% mutate(BMI_class=(weight_kg/(height_cm/100)**2))
+
+diabetes_data <- diabetes_data %>% 
+  mutate(classification_BMI = case_when(BMI_class < 18.5  ~ "Underweight", 18.5 <= BMI_class & BMI_class < 24.9  ~ "Normal", 24.9 <= BMI_class & BMI_class < 29.9  ~ "Overweight",29.9 <= BMI_class & BMI_class < 34.9  ~ "Obesity type I", 34.9 <= BMI_class & BMI_class < 39.9  ~ "Obesity type I", BMI_class >= 39.9  ~ "Obesity type III"))
+
+as.factor(diabetes_data$classification_BMI)
+
+ggplot(na.omit(diabetes_data), aes(x=classification_BMI, y=hdl)) + geom_boxplot() + labs(x="Body mass index category", y="Height (cm)", tag="A", color = "Gender") + theme_classic() +  theme(panel.border = element_rect(colour = "black", fill=NA, size=1), axis.line = element_line(colour = "black", size=0), axis.text.x = element_text(face="bold", color="#000000"), axis.text.y = element_text(face="bold", color="#000000"))
+
+diabetes_data <- diabetes_data %>% mutate(gender_binary= case_when(gender == "female" ~ 0, gender == "male" ~ 1))
+
+diabetes_data <- diabetes_data %>% mutate(BFP_class=(1.39*BMI_class + 0.16 * age - 10.34 * gender_binary - 9))
+
+
+#other option
+#diabetes_data <- if (diabetes_data$gender == "female"){
+#  diabetes_data %>% mutate(BFP_class=(1.39*BMI_class + 0.16 * age - 10.34 * 0 - 9))
+#} else {
+#  diabetes_data %>% mutate(BFP_class=(1.39*BMI_class + 0.16 * age - 10.34 * 1 - 9))
+#    }
+
 ```
 
