@@ -10,18 +10,19 @@ updating...
 library(tidyverse)
 library(datamicroarray)
 library(data.table)
-data('gravier', package = 'datamicroarray')
-set.seed(676571)
-cancer_data=mutate(as_tibble(pluck(gravier,"x")),y=pluck(gravier,"y"),pt_id=1:length(pluck(gravier, "y")),age=round(rnorm(length(pluck(gravier,"y")),mean=55,sd=10),1))
-cancer_data=rename(cancer_data,event_label=y)
-cancer_data$age_group=cut(cancer_data$age,breaks=seq(10,100,by=10))
 ```
 
 Plot gene expression data (repo: bla bla bla)
 you can add:
 tags, title, labels, subtitle, caption
 
-```{r}
+```{r lecture 2}
+
+data('gravier', package = 'datamicroarray')
+set.seed(676571)
+cancer_data=mutate(as_tibble(pluck(gravier,"x")),y=pluck(gravier,"y"),pt_id=1:length(pluck(gravier, "y")),age=round(rnorm(length(pluck(gravier,"y")),mean=55,sd=10),1))
+cancer_data=rename(cancer_data,event_label=y)
+cancer_data$age_group=cut(cancer_data$age,breaks=seq(10,100,by=10))
 #T1
 ggplot(data=cancer_data, aes(x=age, y=g7F07)) + geom_point(aes(color=event_label)) + labs(x="Age", y="Expression (log2)", title="Gene expression of g7F07", subtitle = "On cancer patients", tag="A", color = "Event label") + theme_classic() +  theme(panel.border = element_rect(colour = "black", fill=NA, size=1), axis.line = element_line(colour = "black", size=0), axis.text.x = element_text(face="bold", color="#000000"),
           axis.text.y = element_text(face="bold", color="#000000"))
@@ -59,7 +60,7 @@ ggplot(data=cancer_data, aes(x=event_label,y=g1CNS507, color=event_label)) + geo
 #T12
 ggplot(data=cancer_data, aes(x=age, y= g1int239)) + geom_point(aes(color=event_label)) + geom_smooth(method="lm", se=FALSE, aes(color=event_label))+ theme_classic()
 ```
-```{r}
+```{r lecture 3}
 # filters your data depending on the rows
 # arrange is sorting data in columns
 # select selects the column
@@ -126,5 +127,20 @@ diabetes_data <- diabetes_data %>% mutate(BFP_class=(1.39*BMI_class + 0.16 * age
 #  diabetes_data %>% mutate(BFP_class=(1.39*BMI_class + 0.16 * age - 10.34 * 1 - 9))
 #    }
 
+diabetes_data <-  diabetes_data %>% mutate(WHR=waist_cm/hip_cm)
+
+ggplot(data=diabetes_data, aes(y=BMI_class, x=WHR )) + geom_smooth(method="lm")
+
+ggplot(data=diabetes_data, aes(y=BMI_class, x=BFP_class )) + geom_smooth(method="lm")
+
+
+# count genders: 
+diabetes_data %>% count(gender)
+
+diabetes_data %>% group_by(location) %>%  count(gender)
+
+diabetes_data %>% group_by(classification_BMI) %>%count(gender)
+
+diabetes_data %>% group_by(classification_BMI) %>% summarise(mean=mean(x))
 ```
 
