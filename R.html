@@ -303,47 +303,52 @@ $(document).ready(function () {
 <div id="lecture-2" class="section level3">
 <h3>lecture 2</h3>
 <p>Plot gene expression data (repo: bla bla bla) you can add: tags, title, labels, subtitle, caption</p>
-<pre class="r"><code>#T1
+<pre class="r"><code>data(&#39;gravier&#39;, package = &#39;datamicroarray&#39;)
+set.seed(676571)
+cancer_data=mutate(as_tibble(pluck(gravier,&quot;x&quot;)),y=pluck(gravier,&quot;y&quot;),pt_id=1:length(pluck(gravier, &quot;y&quot;)),age=round(rnorm(length(pluck(gravier,&quot;y&quot;)),mean=55,sd=10),1))
+cancer_data=rename(cancer_data,event_label=y)
+cancer_data$age_group=cut(cancer_data$age,breaks=seq(10,100,by=10))
+#T1
 ggplot(data=cancer_data, aes(x=age, y=g7F07)) + geom_point(aes(color=event_label)) + labs(x=&quot;Age&quot;, y=&quot;Expression (log2)&quot;, title=&quot;Gene expression of g7F07&quot;, subtitle = &quot;On cancer patients&quot;, tag=&quot;A&quot;, color = &quot;Event label&quot;) + theme_classic() +  theme(panel.border = element_rect(colour = &quot;black&quot;, fill=NA, size=1), axis.line = element_line(colour = &quot;black&quot;, size=0), axis.text.x = element_text(face=&quot;bold&quot;, color=&quot;#000000&quot;),
           axis.text.y = element_text(face=&quot;bold&quot;, color=&quot;#000000&quot;))</code></pre>
-<p><img src="R_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p><img src="R_files/figure-html/lecture%202-1.png" width="672" /></p>
 <pre class="r"><code># T2
 ggplot(data=cancer_data, aes(x=age, y=g7F07)) + geom_line() + theme_classic()</code></pre>
-<p><img src="R_files/figure-html/unnamed-chunk-1-2.png" width="672" /></p>
+<p><img src="R_files/figure-html/lecture%202-2.png" width="672" /></p>
 <pre class="r"><code>#T3
 ggplot(data=cancer_data, aes(x=age_group, y=g7F07)) + geom_boxplot(aes(color=event_label)) + theme_classic()</code></pre>
-<p><img src="R_files/figure-html/unnamed-chunk-1-3.png" width="672" /></p>
+<p><img src="R_files/figure-html/lecture%202-3.png" width="672" /></p>
 <pre class="r"><code>#T4
 ggplot(data=cancer_data, aes(x=g7F07)) + geom_histogram() + theme_classic()</code></pre>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<p><img src="R_files/figure-html/unnamed-chunk-1-4.png" width="672" /></p>
+<p><img src="R_files/figure-html/lecture%202-4.png" width="672" /></p>
 <pre class="r"><code>#T5
 ggplot(data=cancer_data, aes(x=g7F07)) + geom_density(aes(color=event_label)) + theme_classic()</code></pre>
-<p><img src="R_files/figure-html/unnamed-chunk-1-5.png" width="672" /></p>
+<p><img src="R_files/figure-html/lecture%202-5.png" width="672" /></p>
 <pre class="r"><code>#T6
 ggplot(data=cancer_data, aes(x=age_group, y=g7F07)) + geom_boxplot(aes(color=event_label)) + theme_classic()</code></pre>
-<p><img src="R_files/figure-html/unnamed-chunk-1-6.png" width="672" /></p>
+<p><img src="R_files/figure-html/lecture%202-6.png" width="672" /></p>
 <pre class="r"><code>#T7
 ggplot(data=cancer_data, aes(x=g7F07)) + geom_density(aes(color=event_label)) + theme_classic()</code></pre>
-<p><img src="R_files/figure-html/unnamed-chunk-1-7.png" width="672" /></p>
+<p><img src="R_files/figure-html/lecture%202-7.png" width="672" /></p>
 <pre class="r"><code>#T8
 ggplot(data=cancer_data, aes(x=age_group, y=g7F07)) + geom_violin(aes(color=event_label, fill=event_label), alpha=0.6) + geom_boxplot(aes(fill=event_label),color= &quot;black&quot;, width=0.2,position = position_dodge(0.9)) + theme_classic()</code></pre>
-<p><img src="R_files/figure-html/unnamed-chunk-1-8.png" width="672" /></p>
+<p><img src="R_files/figure-html/lecture%202-8.png" width="672" /></p>
 <pre class="r"><code>#T9
 ggplot(data=cancer_data, aes(x=age, y=g7F07)) + geom_point(color=&quot;blue&quot;) + geom_smooth() + theme_classic()</code></pre>
 <pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
-<p><img src="R_files/figure-html/unnamed-chunk-1-9.png" width="672" /></p>
+<p><img src="R_files/figure-html/lecture%202-9.png" width="672" /></p>
 <pre class="r"><code>#labels ???
 #T10
 ggplot(data=cancer_data, aes(x=g2E09, y=g7F07)) + geom_point(color=&quot;blue&quot;) + geom_smooth() + facet_wrap(.~ age_group) + theme_classic()</code></pre>
 <pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
-<p><img src="R_files/figure-html/unnamed-chunk-1-10.png" width="672" /></p>
+<p><img src="R_files/figure-html/lecture%202-10.png" width="672" /></p>
 <pre class="r"><code>#T11
 ggplot(data=cancer_data, aes(x=event_label,y=g1CNS507, color=event_label)) + geom_boxplot() + coord_flip() + theme_classic()</code></pre>
-<p><img src="R_files/figure-html/unnamed-chunk-1-11.png" width="672" /></p>
+<p><img src="R_files/figure-html/lecture%202-11.png" width="672" /></p>
 <pre class="r"><code>#T12
 ggplot(data=cancer_data, aes(x=age, y= g1int239)) + geom_point(aes(color=event_label)) + geom_smooth(method=&quot;lm&quot;, se=FALSE, aes(color=event_label))+ theme_classic()</code></pre>
-<p><img src="R_files/figure-html/unnamed-chunk-1-12.png" width="672" /></p>
+<p><img src="R_files/figure-html/lecture%202-12.png" width="672" /></p>
 <pre class="r"><code># filters your data depending on the rows
 # arrange is sorting data in columns
 # select selects the column
@@ -375,10 +380,7 @@ diabetes_data &lt;- read_csv(file = &quot;/Users/laurasansc/Desktop/Bioinformati
 ##   hip = col_double(),
 ##   time.ppn = col_double()
 ## )</code></pre>
-<pre class="r"><code>diabetes_data &lt;- diabetes_data %&gt;% mutate(height_cm=round((2.54*height),1))
-diabetes_data &lt;- diabetes_data %&gt;% mutate(weight_kg=round((weight/2.205),1))
-diabetes_data &lt;- diabetes_data %&gt;% mutate(waist_cm=round((2.54*waist),1))
-diabetes_data &lt;- diabetes_data %&gt;% mutate(hip_cm=round((2.54*hip),1))
+<pre class="r"><code>diabetes_data &lt;- diabetes_data %&gt;% mutate(height_cm=round((2.54*height),1),weight_kg=round((weight/2.205),1),waist_cm=round((2.54*waist),1),hip_cm=round((2.54*hip),1))
 
 # count how many people weight less than 100kg
 diabetes_data %&gt;% filter(weight_kg &lt; 100) </code></pre>
@@ -490,18 +492,13 @@ diabetes_data %&gt;% filter(weight_kg &lt; 100) </code></pre>
 ## # … with 12 more variables: frame &lt;chr&gt;, bp.1s &lt;dbl&gt;, bp.1d &lt;dbl&gt;, bp.2s &lt;dbl&gt;,
 ## #   bp.2d &lt;dbl&gt;, waist &lt;dbl&gt;, hip &lt;dbl&gt;, time.ppn &lt;dbl&gt;, height_cm &lt;dbl&gt;,
 ## #   weight_kg &lt;dbl&gt;, waist_cm &lt;dbl&gt;, hip_cm &lt;dbl&gt;</code></pre>
-<pre class="r"><code>subset_diabetes1 &lt;- diabetes_data %&gt;% filter(location == &quot;Louisa&quot;, age &gt; 40)
-
-ggplot(subset_diabetes1, aes(x=weight_kg, y=height_cm)) + geom_point(aes(color=gender))+scale_color_manual(values=c(&quot;#999999&quot;, &quot;#E69F00&quot;)) + labs(x=&quot;Weight (kg)&quot;, y=&quot;Height (cm)&quot;, tag=&quot;A&quot;, color = &quot;Gender&quot;) + theme_classic() +  theme(panel.border = element_rect(colour = &quot;black&quot;, fill=NA, size=1), axis.line = element_line(colour = &quot;black&quot;, size=0), axis.text.x = element_text(face=&quot;bold&quot;, color=&quot;#000000&quot;),
-          axis.text.y = element_text(face=&quot;bold&quot;, color=&quot;#000000&quot;))</code></pre>
+<pre class="r"><code>diabetes_data %&gt;% filter(location == &quot;Louisa&quot;, age &gt; 40) %&gt;% ggplot(aes(x=weight_kg, y=height_cm)) + geom_point(aes(color=gender))+scale_color_manual(values=c(&quot;#999999&quot;, &quot;#E69F00&quot;)) + labs(x=&quot;Weight (kg)&quot;, y=&quot;Height (cm)&quot;, tag=&quot;A&quot;, color = &quot;Gender&quot;) + theme_classic() +  theme(panel.border = element_rect(colour = &quot;black&quot;, fill=NA, size=1), axis.line = element_line(colour = &quot;black&quot;, size=0), axis.text.x = element_text(face=&quot;bold&quot;, color=&quot;#000000&quot;), axis.text.y = element_text(face=&quot;bold&quot;, color=&quot;#000000&quot;))</code></pre>
 <pre><code>## Warning: Removed 2 rows containing missing values (geom_point).</code></pre>
-<p><img src="R_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<pre class="r"><code>subset_diabetes2 &lt;- diabetes_data %&gt;% filter( age &gt; 50)
-
-ggplot(subset_diabetes2 , aes(x=location, y=height_cm)) + geom_boxplot(aes(color=gender)) +scale_color_manual(values=c(&quot;#999999&quot;, &quot;#E69F00&quot;)) + labs(x=&quot;Location&quot;, y=&quot;Height (cm)&quot;, tag=&quot;A&quot;, color = &quot;Gender&quot;) + theme_classic() +  theme(panel.border = element_rect(colour = &quot;black&quot;, fill=NA, size=1), axis.line = element_line(colour = &quot;black&quot;, size=0), axis.text.x = element_text(face=&quot;bold&quot;, color=&quot;#000000&quot;),
+<p><img src="R_files/figure-html/lecture%203-1.png" width="672" /></p>
+<pre class="r"><code>diabetes_data %&gt;% filter( age &gt; 50) %&gt;% ggplot(aes(x=location, y=height_cm)) + geom_boxplot(aes(color=gender)) +scale_color_manual(values=c(&quot;#999999&quot;, &quot;#E69F00&quot;)) + labs(x=&quot;Location&quot;, y=&quot;Height (cm)&quot;, tag=&quot;A&quot;, color = &quot;Gender&quot;) + theme_classic() +  theme(panel.border = element_rect(colour = &quot;black&quot;, fill=NA, size=1), axis.line = element_line(colour = &quot;black&quot;, size=0), axis.text.x = element_text(face=&quot;bold&quot;, color=&quot;#000000&quot;),
           axis.text.y = element_text(face=&quot;bold&quot;, color=&quot;#000000&quot;))</code></pre>
 <pre><code>## Warning: Removed 1 rows containing non-finite values (stat_boxplot).</code></pre>
-<p><img src="R_files/figure-html/unnamed-chunk-2-2.png" width="672" /></p>
+<p><img src="R_files/figure-html/lecture%203-2.png" width="672" /></p>
 <pre class="r"><code>diabetes_data %&gt;% summarise(age_min = min(age))</code></pre>
 <pre><code>## # A tibble: 1 x 1
 ##   age_min
@@ -512,7 +509,7 @@ ggplot(subset_diabetes2 , aes(x=location, y=height_cm)) + geom_boxplot(aes(color
 ##   age_max
 ##     &lt;dbl&gt;
 ## 1      92</code></pre>
-<pre class="r"><code>diabetes_data %&gt;% filter(age == 20)  %&gt;% summarise(max_height = max(height_cm)) </code></pre>
+<pre class="r"><code>diabetes_data %&gt;% filter(age == 20)  %&gt;% summarise(max_height = max(height_cm))</code></pre>
 <pre><code>## # A tibble: 1 x 1
 ##   max_height
 ##        &lt;dbl&gt;
@@ -522,7 +519,10 @@ ggplot(subset_diabetes2 , aes(x=location, y=height_cm)) + geom_boxplot(aes(color
 ##   min_height
 ##        &lt;dbl&gt;
 ## 1       147.</code></pre>
-<pre class="r"><code>diabetes_data %&gt;% select(starts_with(&quot;b&quot;))</code></pre>
+<pre class="r"><code>#diabetes_data %&gt;% filter(age == 20) %&gt;% 
+
+
+diabetes_data %&gt;% select(starts_with(&quot;b&quot;))</code></pre>
 <pre><code>## # A tibble: 403 x 4
 ##    bp.1s bp.1d bp.2s bp.2d
 ##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -555,7 +555,12 @@ ggplot(subset_diabetes2 , aes(x=location, y=height_cm)) + geom_boxplot(aes(color
 <pre class="r"><code>diabetes_data &lt;- diabetes_data %&gt;% mutate(BMI_class=(weight_kg/(height_cm/100)**2))
 
 diabetes_data &lt;- diabetes_data %&gt;% 
-  mutate(classification_BMI = case_when(BMI_class &lt; 18.5  ~ &quot;Underweight&quot;, 18.5 &lt;= BMI_class &amp; BMI_class &lt; 24.9  ~ &quot;Normal&quot;, 24.9 &lt;= BMI_class &amp; BMI_class &lt; 29.9  ~ &quot;Overweight&quot;,29.9 &lt;= BMI_class &amp; BMI_class &lt; 34.9  ~ &quot;Obesity type I&quot;, 34.9 &lt;= BMI_class &amp; BMI_class &lt; 39.9  ~ &quot;Obesity type I&quot;, BMI_class &gt;= 39.9  ~ &quot;Obesity type III&quot;))
+  mutate(classification_BMI = case_when(BMI_class &lt; 18.5  ~ &quot;Underweight&quot;, 
+                                        18.5 &lt;= BMI_class &amp; BMI_class &lt; 24.9  ~ &quot;Normal&quot;, 
+                                        24.9 &lt;= BMI_class &amp; BMI_class &lt; 29.9  ~ &quot;Overweight&quot;,
+                                        29.9 &lt;= BMI_class &amp; BMI_class &lt; 34.9  ~ &quot;Obesity type I&quot;, 
+                                        34.9 &lt;= BMI_class &amp; BMI_class &lt; 39.9  ~ &quot;Obesity type I&quot;, 
+                                        BMI_class &gt;= 39.9  ~ &quot;Obesity type III&quot;))
 
 as.factor(diabetes_data$classification_BMI)</code></pre>
 <pre><code>##   [1] Normal           Obesity type I   Obesity type III Normal          
@@ -661,18 +666,118 @@ as.factor(diabetes_data$classification_BMI)</code></pre>
 ## [401] Normal           Obesity type I   Obesity type I  
 ## Levels: Normal Obesity type I Obesity type III Overweight Underweight</code></pre>
 <pre class="r"><code>ggplot(na.omit(diabetes_data), aes(x=classification_BMI, y=hdl)) + geom_boxplot() + labs(x=&quot;Body mass index category&quot;, y=&quot;Height (cm)&quot;, tag=&quot;A&quot;, color = &quot;Gender&quot;) + theme_classic() +  theme(panel.border = element_rect(colour = &quot;black&quot;, fill=NA, size=1), axis.line = element_line(colour = &quot;black&quot;, size=0), axis.text.x = element_text(face=&quot;bold&quot;, color=&quot;#000000&quot;), axis.text.y = element_text(face=&quot;bold&quot;, color=&quot;#000000&quot;))</code></pre>
-<p><img src="R_files/figure-html/unnamed-chunk-2-3.png" width="672" /></p>
-<pre class="r"><code>diabetes_data &lt;- diabetes_data %&gt;% mutate(gender_binary= case_when(gender == &quot;female&quot; ~ 0, gender == &quot;male&quot; ~ 1))
-
-diabetes_data &lt;- diabetes_data %&gt;% mutate(BFP_class=(1.39*BMI_class + 0.16 * age - 10.34 * gender_binary - 9))
-
+<p><img src="R_files/figure-html/lecture%203-3.png" width="672" /></p>
+<pre class="r"><code>diabetes_data &lt;- diabetes_data %&gt;% mutate(gender_binary= case_when(gender == &quot;female&quot; ~ 0, gender == &quot;male&quot; ~ 1),
+                                          BFP_class=(1.39*BMI_class + 0.16 * age - 10.34 * gender_binary - 9),
+                                          WHR=waist_cm/hip_cm)
 
 #other option
 #diabetes_data &lt;- if (diabetes_data$gender == &quot;female&quot;){
 #  diabetes_data %&gt;% mutate(BFP_class=(1.39*BMI_class + 0.16 * age - 10.34 * 0 - 9))
 #} else {
 #  diabetes_data %&gt;% mutate(BFP_class=(1.39*BMI_class + 0.16 * age - 10.34 * 1 - 9))
-#    }</code></pre>
+#    }
+
+ggplot(data=diabetes_data, aes(y=BMI_class, x=WHR ))+ geom_point(aes(color=gender)) + geom_smooth(method=&quot;lm&quot;) + scale_color_manual(values=c(&quot;#999999&quot;, &quot;#E69F00&quot;)) + theme_classic() +  theme(panel.border = element_rect(colour = &quot;black&quot;, fill=NA, size=1), axis.line = element_line(colour = &quot;black&quot;, size=0), axis.text.x = element_text(face=&quot;bold&quot;, color=&quot;#000000&quot;), axis.text.y = element_text(face=&quot;bold&quot;, color=&quot;#000000&quot;))</code></pre>
+<pre><code>## Warning: Removed 8 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 8 rows containing missing values (geom_point).</code></pre>
+<p><img src="R_files/figure-html/lecture%203-4.png" width="672" /></p>
+<pre class="r"><code>ggplot(data=diabetes_data, aes(y=BMI_class, x=BFP_class )) + geom_point(aes(color=gender)) + geom_smooth(method=&quot;lm&quot;) +scale_color_manual(values=c(&quot;#999999&quot;, &quot;#E69F00&quot;)) + theme_classic() +  theme(panel.border = element_rect(colour = &quot;black&quot;, fill=NA, size=1), axis.line = element_line(colour = &quot;black&quot;, size=0), axis.text.x = element_text(face=&quot;bold&quot;, color=&quot;#000000&quot;), axis.text.y = element_text(face=&quot;bold&quot;, color=&quot;#000000&quot;))</code></pre>
+<pre><code>## Warning: Removed 6 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 6 rows containing missing values (geom_point).</code></pre>
+<p><img src="R_files/figure-html/lecture%203-5.png" width="672" /></p>
+<pre class="r"><code># count genders: 
+diabetes_data %&gt;% count(gender)</code></pre>
+<pre><code>## # A tibble: 2 x 2
+##   gender     n
+##   &lt;chr&gt;  &lt;int&gt;
+## 1 female   234
+## 2 male     169</code></pre>
+<pre class="r"><code>diabetes_data %&gt;% group_by(location) %&gt;%  count(gender)</code></pre>
+<pre><code>## # A tibble: 4 x 3
+## # Groups:   location [2]
+##   location   gender     n
+##   &lt;chr&gt;      &lt;chr&gt;  &lt;int&gt;
+## 1 Buckingham female   114
+## 2 Buckingham male      86
+## 3 Louisa     female   120
+## 4 Louisa     male      83</code></pre>
+<pre class="r"><code>diabetes_data %&gt;% group_by(classification_BMI) %&gt;%count(gender)</code></pre>
+<pre><code>## # A tibble: 12 x 3
+## # Groups:   classification_BMI [6]
+##    classification_BMI gender     n
+##    &lt;chr&gt;              &lt;chr&gt;  &lt;int&gt;
+##  1 Normal             female    47
+##  2 Normal             male      63
+##  3 Obesity type I     female    83
+##  4 Obesity type I     male      40
+##  5 Obesity type III   female    26
+##  6 Obesity type III   male       4
+##  7 Overweight         female    70
+##  8 Overweight         male      55
+##  9 Underweight        female     3
+## 10 Underweight        male       6
+## 11 &lt;NA&gt;               female     5
+## 12 &lt;NA&gt;               male       1</code></pre>
+<pre class="r"><code>diabetes_data %&gt;% group_by(classification_BMI) %&gt;% summarise(mean=mean(weight_kg), sd = sd(weight_kg))</code></pre>
+<pre><code>## # A tibble: 6 x 3
+##   classification_BMI  mean    sd
+##   &lt;chr&gt;              &lt;dbl&gt; &lt;dbl&gt;
+## 1 Normal              65.7  9.73
+## 2 Obesity type I      92.4 12.3 
+## 3 Obesity type III   115.  15.8 
+## 4 Overweight          76.1  8.80
+## 5 Underweight         51.5  6.02
+## 6 &lt;NA&gt;                NA   NA</code></pre>
+<pre class="r"><code>diabetes_data %&gt;% filter(location == &quot;Buckingham&quot;, gender == &#39;female&#39;,) %&gt;% summarise(mean=mean(age))</code></pre>
+<pre><code>## # A tibble: 1 x 1
+##    mean
+##   &lt;dbl&gt;
+## 1  46.5</code></pre>
+<pre class="r"><code>x &lt;- tribble(
+  ~key, ~val_x,
+     1, &quot;x1&quot;,
+     2, &quot;x2&quot;,
+     3, &quot;x3&quot;
+)
+y &lt;- tribble(
+  ~key, ~val_y,
+     1, &quot;y1&quot;,
+     2, &quot;y2&quot;,
+     4, &quot;y3&quot;
+)
+
+# Q4
+bases &lt;- c(&#39;A&#39;,&#39;T&#39;,&#39;C&#39;,&#39;G&#39;)
+n = 100
+my_dna &lt;- str_c(sample(bases, n, replace=TRUE), collapse=&#39;&#39;)
+
+str_count(my_dna, &quot;A&quot;)</code></pre>
+<pre><code>## [1] 22</code></pre>
+<pre class="r"><code>str_count(my_dna, &quot;T&quot;)</code></pre>
+<pre><code>## [1] 24</code></pre>
+<pre class="r"><code>str_count(my_dna, &quot;C&quot;)</code></pre>
+<pre><code>## [1] 28</code></pre>
+<pre class="r"><code>str_count(my_dna, &quot;G&quot;)</code></pre>
+<pre><code>## [1] 26</code></pre>
+<pre class="r"><code># Q5
+my_rna &lt;- str_replace_all(my_dna,&quot;T&quot;, &quot;U&quot;)
+str_count(my_rna, &quot;AUG&quot;)</code></pre>
+<pre><code>## [1] 1</code></pre>
+<pre class="r"><code>#Q6
+first_codon &lt;- str_sub(my_dna, 1, 3)
+last_codon &lt;- str_sub(my_dna, -3, -1)
+
+genetic_code &lt;- data.frame(&quot;three_letter&quot; = c(&quot;ILE&quot;,&quot;LEU&quot;,&quot;VAL&quot;,&quot;PHE&quot;,&quot;MET&quot;,&quot;CYS&quot;,&quot;ALA&quot;,&quot;GLY&quot;,&quot;PRO&quot;,&quot;THR&quot;,&quot;SER&quot;,&quot;TYR&quot;,&quot;TRP&quot;,&quot;GLN&quot;,&quot;ASN&quot;,&quot;HIS&quot;,&quot;GLU&quot;,&quot;ASP&quot;,&quot;LYS&quot;,&quot;ARG&quot;,&quot;STOP&quot;), &quot;one_letter&quot; = c(&quot;I&quot;,&quot;L&quot;,&quot;V&quot;,&quot;F&quot;,&quot;M&quot;,&quot;C&quot;,&quot;A&quot;,&quot;G&quot;,&quot;P&quot;,&quot;T&quot;,&quot;S&quot;,&quot;Y&quot;,&quot;W&quot;,&quot;Q&quot;,&quot;N&quot;,&quot;H&quot;,&quot;E&quot;,&quot;D&quot;,&quot;K&quot;,&quot;R&quot;,&quot;STOP&quot;),&quot;codon&quot;=c(&quot;ATT, ATC, ATA&quot;,&quot;CTT, CTC, CTA, CTG, TTA, TTG&quot;,&quot;GTT, GTC, GTA, GTG&quot;,&quot;TTT, TTC&quot;,&quot;ATG&quot;,&quot;TGT, TGC&quot;, &quot;GCT, GCC, GCA, GCG&quot;,&quot;GGT, GGC, GGA, GGG&quot;,&quot;CCT, CCC, CCA, CCG&quot;,&quot;ACT, ACC, ACA, ACG&quot;,&quot;TCT, TCC, TCA, TCG, AGT, AGC&quot;, &quot;TAT, TAC&quot;,&quot;TGG&quot;,&quot;CAA, CAG&quot;,&quot;AAT, AAC&quot;,&quot;CAT, CAC&quot;,&quot;GAA, GAG&quot;,&quot;GAT, GAC&quot;,&quot;AAA, AAG&quot;,&quot;CGT, CGC, CGA, CGG, AGA, AGG&quot;,&quot;TAA, TAG, TGA&quot;))
+
+first_aa &lt;- genetic_code %&gt;% filter(codon == first_codon) 
+
+#Q7
+my_dna %&gt;%  str_split(&quot;ATC&quot;)</code></pre>
+<pre><code>## [[1]]
+## [1] &quot;CCCCCGGATTGAAG&quot;                                                             
+## [2] &quot;TTCGGACTATGCATTGACCTCCTCTCACGTTATAAGGTGCTGACAGCTCAAGCCAACGAGTGTTGAGTCCGCGGA&quot;
+## [3] &quot;GGTGC&quot;</code></pre>
 </div>
 </div>
 
