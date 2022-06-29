@@ -48,7 +48,8 @@ linkedin_username: laurasansc
 # about_title: About Me
 about_profile_image: images/laura_fotocarnet.jpg
 about_content: | # this will include new lines to allow paragraphs
-  Hi, my name is Laura. 
+  Hello World!
+  My name is Laura. I am a Bioinformatics graduate with focus on working in deploying production level software for academic and industry research, and clinical use. During my masters program I have mainly worked with statistics and machine learning and deep learning courses. I am an ambitious person that thrives in multidisciplinary and diverse teams.
 
 content:
   #- title: Experience # Title for the section
@@ -91,8 +92,9 @@ content:
         quote: >
           Copenhagen, Denmark
         description: |
-          
-
+          Research on bioinformatic software trends.
+          Organizing hackathons: Copenhagen Bioinformatics hackathon 2020 (April 2020), Synthetic Health Data Hackathon 2020 (November 2020), Copenhagen Bioinformatics Hackathon 2021 (April 2021), protein edition. 
+          Deploying production level bioinformatics software and models. Technologies used: Python, R, basics of Javascript.
   - title: Education # Title for the section
     layout: list # Type of content section (list/text)
     content:
@@ -123,7 +125,8 @@ content:
         quote: >
           Nijmegen, The Netherlands 
         description: | # this will include new lines to allow paragraphs
-          Semester abroad on the Erasmus+ Exchange Program Scholarship. Main courses such as toxicology, functional genomics and neurobiology.
+          Semester abroad on the Erasmus+ Exchange Program Scholarship. 
+          Main courses such as toxicology, functional genomics and neurobiology.
   - title: A Bit More About Me
     layout: text
     content: | # this will include new lines to allow paragraphs
