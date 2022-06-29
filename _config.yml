@@ -50,7 +50,7 @@ about_profile_image: images/laura_fotocarnet.jpg
 about_content: | # this will include new lines to allow paragraphs
   Hello World!
 
-  My name is Laura. I am a Bioinformatics graduate with focus on working in deploying production level software for academic and industry research, and clinical use. During my masters program I have mainly worked with statistics and machine learning and deep learning courses. I am an ambitious person that thrives in multidisciplinary and diverse teams.
+  My name is Laura. I am a Bioinformatics graduate with focus on working in deploying production level software and AI models for academic and industry research, and clinical use. During my masters program I have mainly worked with statistics and machine learning and deep learning courses. I am an ambitious person that thrives in multidisciplinary and diverse teams.
 
 content:
   #- title: Experience # Title for the section
@@ -139,7 +139,7 @@ content:
     content: | # this will include new lines to allow paragraphs
       Alongside my interests in Biology, proteins, data science and software developing some of my other interests and hobbies are:
       - Knitting, painting, and other kinds of crafts
-      - Playing basketball and horse riding
+      - Playing basketball and horseback riding
       - Cooking and eating
 
 
