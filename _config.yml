@@ -90,7 +90,8 @@ content:
         caption: December 2019 - February 2022
         quote: >
           Copenhagen, Denmark
-        description: Bye World!
+        description: |
+          
 
   - title: Education # Title for the section
     layout: list # Type of content section (list/text)
@@ -120,13 +121,13 @@ content:
         caption: 2017 
         sub_title: BSc Biotechnology
         quote: >
-          Nijmegen, The Netherlands. 
+          Nijmegen, The Netherlands 
         description: | # this will include new lines to allow paragraphs
           Semester abroad on the Erasmus+ Exchange Program Scholarship. Main courses such as toxicology, functional genomics and neurobiology.
   - title: A Bit More About Me
     layout: text
     content: | # this will include new lines to allow paragraphs
-      Alongside my interests in networks and software engineering some of my other interests and hobbies are:
+      Alongside my interests in Biology, proteins, data science and software developing some of my other interests and hobbies are:
       - Knitting, painting, and other kinds of crafts
       - Playing basketball and horse riding
       - Cooking and eating
