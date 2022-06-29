@@ -12,7 +12,7 @@ email: laurasansc@gmail.com
 website: https://laurasansc.github.io
 
 # Dark Mode (true/false/never)
-darkmode: false
+darkmode: true
 
 # Social links
 twitter_username: laurasansc
@@ -122,13 +122,14 @@ content:
           Semester abroad on the Erasmus+ Exchange Program Scholarship
         description: | # this will include new lines to allow paragraphs
           hello
-  - title: A Little More About Me
+  - title: A Bit More About Me
     layout: text
     content: | # this will include new lines to allow paragraphs
       Alongside my interests in networks and software engineering some of my other interests and hobbies are:
       - Knitting, painting, and other kinds of crafts
       - Playing basketball and horse riding
       - Cooking and eating
+
 
 # Footer
 footer_show_references: true
