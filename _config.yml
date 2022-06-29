@@ -79,8 +79,8 @@ content:
         # link_text: boringcompany.com
         sub_title: BioLib
         caption: February 2022 - Present
-        quote: >
-          
+        quote: > 
+          Copenhagen, Denmark
         description: | # this will include new lines to allow paragraphs
             Developing and deploying production level bioinformatics software and models. My role involved mainly working with structural biology deep learning models such as AlphaFold, RoseTTAFold, among others. Technologies used: version control Git, DevOps using Docker, Python, R, Bash and basics of Javascript. 
       - layout: left
@@ -88,7 +88,8 @@ content:
         link: biolib.com
         sub_title: BioLib
         caption: December 2019 - February 2022
-        quote: Hello World!
+        quote: >
+          Copenhagen, Denmark
         description: Bye World!
 
   - title: Education # Title for the section
@@ -99,29 +100,29 @@ content:
         caption: 2019 - 2022
         sub_title: MSc Bioinformatics and Systems Biology
         quote: >
-          Established in 1636, Harvard is the oldest higher education institution in the United States, and is widely regarded in terms of its influence, reputation, and academic pedigree as a leading university in not just the US but also the world.
+          Kongens Lyngby, Denmark
         description: | # this will include new lines to allow paragraphs
-          During my time at Harvard I learnt most of my key skills that have I have taken through my career such as teamwork and working to tight deadlines. I thouroughly enjoyed my time as university and learnt a lot about a healthy work life balance.
+          GPA: 10.65 (7-grade scale)
+          Main courses:
 
-          I spent a lot of my free time as a committee member of the *Harvard Mountaineering Club* taking on roles such as *Trip Secretary* and *Vice-President*.
       - layout: left
         title: Universitat Pompeu Fabra (UPF)
         caption: 2014 - 2018
         sub_title: BSc Human Biology
         quote: >
-          Established in 1636, Harvard is the oldest higher education institution in the United States, and is widely regarded in terms of its influence, reputation, and academic pedigree as a leading university in not just the US but also the world.
+          Barcelona, Spain
         description: | # this will include new lines to allow paragraphs
-          During my time at Harvard I learnt most of my key skills that have I have taken through my career such as teamwork and working to tight deadlines. I thouroughly enjoyed my time as university and learnt a lot about a healthy work life balance.
+          GPA: 7.85 ( 0 to 10 scale)
+          Main courses:
 
-          I spent a lot of my free time as a committee member of the *Harvard Mountaineering Club* taking on roles such as *Trip Secretary* and *Vice-President*.
       - layout: left
         title: Radboud University (RU)
         caption: 2017 
         sub_title: BSc Biotechnology
         quote: >
-          Semester abroad on the Erasmus+ Exchange Program Scholarship
+          Nijmegen, The Netherlands. 
         description: | # this will include new lines to allow paragraphs
-          hello
+          Semester abroad on the Erasmus+ Exchange Program Scholarship. Main courses such as toxicology, functional genomics and neurobiology.
   - title: A Bit More About Me
     layout: text
     content: | # this will include new lines to allow paragraphs
